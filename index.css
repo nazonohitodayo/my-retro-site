@@ -129,3 +129,12 @@ body {
     display: block;
 }
 
+/* --- 最終手段：全ての要素に対して「？」を最優先で強制する --- */
+html, body, div, p, span, a, a * {
+    cursor: help !important;
+}
+
+/* リンクの上にマウスが乗った時、ブラウザの標準機能を完全に無視させる */
+a:hover, a:active, a:focus {
+    cursor: help !important;
+}
