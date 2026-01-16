@@ -149,24 +149,26 @@ document.addEventListener('mouseleave', () => {
 				}
 
 				// --- キリ番を狙わせない！爆速カウンター ---
-				window.addEventListener('load', function () {
-					// 画面上の「.counter-number」という名前がついた場所を探す
-					const counterElement = document.querySelector('.counter-number');
-					const prefix = "000077"; // 777付近で寸止めする
+				window.addEventListener('DOMContentLoaded', (event) => {
+					// 1. カウンターの場所を特定
+					const counterDisplay = document.querySelector('.counter-number');
+					const staticPart = "000077"; // 常に表示する部分
 
-					if (counterElement) {
+					if (counterDisplay) {
+						// 2. 0.05秒ごとに爆速で動かす
 						setInterval(() => {
-							// 0.05秒ごとに下一桁を0〜9でシャッフル
 							const randomDigit = Math.floor(Math.random() * 10);
-							counterElement.innerText = prefix + randomDigit;
+							counterDisplay.innerText = staticPart + randomDigit;
 
-							// 運良く「7」になった時だけ光らせる（という煽り演出）
+							// 7の時だけ光らせる演出
 							if (randomDigit === 7) {
-								counterElement.style.textShadow = "0 0 10px #00ff00";
+								counterDisplay.style.textShadow = "0 0 10px #00ff00, 0 0 20px #00ff00";
 							} else {
-								counterElement.style.textShadow = "none";
+								counterDisplay.style.textShadow = "none";
 							}
 						}, 50);
+					} else {
+						console.log("カウンターの場所が見つかりませんでした。HTMLのclassを確認してください！");
 					}
 				});}	</script>
 </body>
