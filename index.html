@@ -77,6 +77,33 @@
 	</center>
 
 	<script>
+// --- 執念のはてな出現マジック ---
+const hateru = document.createElement('div');
+hateru.innerHTML = '？';
+hateru.style.cssText = `
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    color: yellow;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 2px 2px 0 #000;
+    display: none;
+`;
+document.body.appendChild(hateru);
+
+// マウスが動いたらはてなを表示して追いかける
+document.addEventListener('mousemove', (e) => {
+    hateru.style.display = 'block';
+    hateru.style.left = (e.clientX + 15) + 'px';
+    hateru.style.top = (e.clientY + 15) + 'px';
+});
+
+// 画面からマウスが外れたら隠す
+document.addEventListener('mouseleave', () => {
+    hateru.style.display = 'none';
+});
+		
 		window.addEventListener('load', function () {
 			const percentText = document.getElementById('percent-text');
 			const progressBar = document.getElementById('js-progress-bar'); // IDで取得
@@ -125,4 +152,5 @@
 
 
 </html>
+
 
