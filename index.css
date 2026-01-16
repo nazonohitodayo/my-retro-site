@@ -1,0 +1,29 @@
+/* --- 選択・コピー禁止の設定（一つにまとめました） --- */
+body {
+	background-color: #000080;
+	/* 元の背景色を維持 */
+	color: #ffff00;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* --- リンクにマウスを乗せた時の嫌がらせ --- */
+a:hover {
+	cursor: help !important;
+	/* カーソルを常に「？」にする */
+	color: #ff0000;
+	/* 色も変えて目立たせる */
+}
+
+/* --- デジタルカウンターの微調整 --- */
+.counter-number {
+	font-family: 'Orbitron', 'Courier New', monospace !important;
+	font-size: 1.8rem;
+	color: #00ff00 !important;
+	text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+	background-color: #000000 !important;
+	padding: 2px 10px;
+	letter-spacing: 2px;
+}

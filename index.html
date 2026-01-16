@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>★ Nazonohito's official HP ★</title>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<center>
+		<div class="marquee-area">
+			<marquee>2026年最新技術を駆使した平成レトロサイトへようこそ！！掲示板はマナーを守って使ってね！！</marquee>
+		</div>
+
+		<h1>ようこそ！Nazonohito のホームページへ！</h1>
+		<p class="blink-text">★ 相互リンク募集中です ★</p>
+
+		<div class="counter-text">
+			あなたは
+			<table border="5" cellspacing="0" cellpadding="5"
+				style="display: inline-table; vertical-align: middle; background-color: #000000; border-color: #888888; border-style: outset;">
+				<tr>
+					<td class="counter-number" style="color: #00ff00;">0000777</td>
+				</tr>
+			</table>
+			番目の訪問者です！
+			<br>
+			<span style="color: #ff0000; font-size: 0.9rem; display: block; margin-top: 5px;">
+				（キリ番報告必須！）
+			</span>
+		</div>
+
+		<hr size="10" color="#ff00ff">
+
+		<div class="main-image-frame">
+			<div id="loading-gate">
+				<div style="text-align: center;">
+					<p class="blink-text" id="loading-msg"
+						style="font-size: 2rem; color: #ffffff; background: #ff0000; display: inline-block; padding: 10px; margin: 10px;">
+						通信中... (56kbps)<br>
+						<progress max="100"></progress>
+					</p>
+					<div class="progress-container">
+						<div class="progress-bar" id="js-progress-bar" style="width: 0%"></div>
+					</div>
+					<p style="color: #00ff00; font-family: monospace; font-size: 0.8rem; margin-top: 5px;">
+						Loading: <span id="percent-text">0</span>%
+					</p>
+				</div>
+			</div>
+			<div id="image-area"></div>
+		</div>
+
+		<hr size="10" color="#ff00ff">
+
+		<div class="content">
+			<p>このサイトは、あえて1990年代の魂を継承しつつ、<br>
+				最新のスマートフォンでの閲覧に完全対応（矛盾）しています。</p>
+
+			<nav class="retro-nav">
+				<a href="#">[プロフィール]</a>
+				<a href="javascript:void(0)" onclick="gatekeeper()">[魔法の言葉]</a>
+				<a href="javascript:void(0)" onclick="alert('まだ工事中だよ！一生懸命作ってるから待っててね！')">[工事中]</a>
+				<a href="#">[BBS]</a>
+			</nav>
+		</div>
+
+		<hr size="10" color="#00ffff">
+
+		<address>Copyright (C) 2026 Nazonohito feat.Gemini. All Rights Reserved.</address>
+
+		<div class="admin-only">
+			<a href="https://elegant-klepon-bcf88c.netlify.app/">[前回のオシャレサイトへ戻る]</a>
+		</div>
+	</center>
+
+	<script>
+		window.addEventListener('load', function () {
+			const percentText = document.getElementById('percent-text');
+			const progressBar = document.getElementById('js-progress-bar'); // IDで取得
+
+			let count = 0;
+			const interval = setInterval(() => {
+				count++;
+				if (percentText) percentText.innerText = count;
+				// JSでバーの長さも制御すると数字と完全に同期します
+				if (progressBar) progressBar.style.width = count + '%';
+
+				if (count >= 100) {
+					clearInterval(interval);
+					// 100%になったら看板を消す（CSSアニメーションとズレるのを防ぐ）
+					setTimeout(() => {
+						const gate = document.getElementById('loading-gate');
+						if (gate) gate.style.display = 'none';
+
+						// 画像を表示
+						const area = document.getElementById('image-area');
+						if (area && !area.innerHTML) {
+							area.innerHTML = '<img src="takaoPAR59143.jpg" alt="メイン画像" class="retro-img">';
+						}
+					}, 500);
+				}
+			}, 250);
+		});
+		// --- 【追加】ここから下を追加してください ---
+
+			// 右クリック禁止（これは今動いているもの）
+			document.oncontextmenu = function () {
+				alert('★右クリック禁止★\n画像の無断転載はやめてね！(・∀・)');
+				return false;
+			};
+
+			// 門番（パスワード入力）
+			function gatekeeper() {
+				const password = prompt("【認証】パスワードを入力してください\n（ヒント：このサイトの管理人は「謎の〇〇」）", "");
+				if (password === "人" || password === "ひと") {
+					alert("正解！でもまだページがないんだ。ごめんね！");
+				} else if (password !== null) { // キャンセル時は何もしない
+					alert("不届き者め！立ち去れ！");
+				}
+			}	</script>
+</body>
+
+</html>
