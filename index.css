@@ -13,6 +13,8 @@ a, a *, button, input {
 
 /* --- サイト全体の基本設定 --- */
 body {
+    background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* 例：カーボン風 */
+    background-repeat: repeat; /* 縦横に並べる */
     background-color: #000080 !important;
     color: #ffff00 !important;
     font-family: "MS UI Gothic", "Saitamaar", sans-serif !important;
@@ -24,6 +26,23 @@ body {
     -moz-user-select: none !important;
     -ms-user-select: none !important;
     user-select: none !important;
+
+       /* 紺色の背景の上に、うっすらと横縞（走査線）と斜めのストライプを重ねる */
+    background: 
+        linear-gradient(rgba(0, 0, 128, 0.9), rgba(0, 0, 128, 0.9)),
+        repeating-linear-gradient(45deg, #111 0px, #111 2px, transparent 2px, transparent 10px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+    background-color: #000080;
+    
+    /* サイトが震えているような質感を出す（オプション） */
+    animation: monitor-flicker 0.1s infinite;
+}
+
+@keyframes monitor-flicker {
+    0% { opacity: 0.99; }
+    50% { opacity: 1; }
+    100% { opacity: 0.99; }
+}
 }
 
 /* --- 以下、レイアウト維持のためのコード（消さないでください） --- */
@@ -137,4 +156,5 @@ html, body, div, p, span, a, a * {
 a:hover, a:active, a:focus {
     cursor: help !important;
 }
+
 
