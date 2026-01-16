@@ -1,8 +1,73 @@
-/* --- 1. リンクを強制的に「？」にする設定 --- */
-a, a:link, a:visited, a:hover, a:active {
-    cursor: help !important; /* 矢印＋クエスチョンマーク */
-    color: #ff0000 !important; /* リンクは怪しい赤色 */
-    text-decoration: underline;
+/* --- 最終兵器：全要素に対して「？」を強制する --- */
+/* aタグだけでなく、その中の文字など全てに対して指定します */
+
+* {
+    /* リンク（aタグ）に関連する場所だけは絶対に「？」にする */
+    cursor: auto;
+}
+
+a, a *, .retro-nav a, .admin-only a {
+    cursor: help !important;
+    color: #ff0000 !important;
+    text-decoration: underline !important;
+}
+
+/* --- サイト全体の基本設定 --- */
+body {
+    background-color: #000080 !important;
+    color: #ffff00 !important;
+    font-family: "MS UI Gothic", "Saitamaar", sans-serif !important;
+    margin: 0;
+    padding: 0;
+    
+    /* 文字のコピーを禁止 */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* --- 以下、レイアウト維持のためのコード（消さないでください） --- */
+.counter-number {
+    font-family: 'Orbitron', monospace !important;
+    font-size: 1.8rem;
+    color: #00ff00 !important;
+    background-color: #000 !important;
+    padding: 2px 10px;
+}
+
+.main-image-frame {
+    position: relative;
+    border: 10px inset #808080;
+    display: inline-block;
+    background-color: #000;
+    min-width: 320px;
+    min-height: 240px;
+}
+
+#loading-gate {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #000;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 10;
+}
+
+.progress-container {
+    width: 200px; height: 20px;
+    background-color: #333;
+    border: 2px inset #888;
+    margin: 15px auto;
+}
+
+.progress-bar {
+    width: 0%; height: 100%;
+    background-color: #00ff00 !important;
+}
+
+.retro-img {
+    max-width: 100%; height: auto;
+    display: block;
 }
 
 /* --- 2. サイト全体の「不便さ」設定 --- */
@@ -63,3 +128,4 @@ body {
     max-width: 100%; height: auto;
     display: block;
 }
+
