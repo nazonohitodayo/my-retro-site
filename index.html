@@ -147,11 +147,22 @@ document.addEventListener('mouseleave', () => {
 				} else if (password !== null) { // キャンセル時は何もしない
 					alert("不届き者め！立ち去れ！");
 				}
+
+				// --- 下一桁だけ無駄に動かす呪文 ---
+const counterTd = document.querySelector('.counter-number');
+const originalText = "000077"; // 最後の1桁を除いた数字
+
+setInterval(() => {
+    // 0〜9の乱数を高速で生成して、最後の1桁としてくっつける
+    const randomDigit = Math.floor(Math.random() * 10);
+    counterTd.innerText = originalText + randomDigit;
+}, 50); // 0.05秒ごとに変化
 			}	</script>
 </body>
 
 
 </html>
+
 
 
 
