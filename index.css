@@ -1,15 +1,14 @@
 /* --- 最終兵器：全要素に対して「？」を強制する --- */
 /* aタグだけでなく、その中の文字など全てに対して指定します */
-
+/* 全ての要素に「？」画像をカーソルとして強制適用 */
 * {
-    /* リンク（aタグ）に関連する場所だけは絶対に「？」にする */
-    cursor: auto;
+    /* ブラウザ標準の「？」ではなく、画像として強制的に表示させる */
+    cursor: url('https://cur.cursors-4u.net/symbols/sym-1/sym47.cur'), help !important;
 }
 
-a, a *, .retro-nav a, .admin-only a {
-    cursor: help !important;
-    color: #ff0000 !important;
-    text-decoration: underline !important;
+/* リンクの上でも絶対に「？」を維持する */
+a, a *, button, input {
+    cursor: url('https://cur.cursors-4u.net/symbols/sym-1/sym47.cur'), help !important;
 }
 
 /* --- サイト全体の基本設定 --- */
@@ -138,3 +137,4 @@ html, body, div, p, span, a, a * {
 a:hover, a:active, a:focus {
     cursor: help !important;
 }
+
