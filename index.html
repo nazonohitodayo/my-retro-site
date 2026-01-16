@@ -148,16 +148,27 @@ document.addEventListener('mouseleave', () => {
 					alert("不届き者め！立ち去れ！");
 				}
 
-				// --- 下一桁だけ無駄に動かす呪文 ---
-const counterTd = document.querySelector('.counter-number');
-const originalText = "000077"; // 最後の1桁を除いた数字
+				// --- キリ番を狙わせない！爆速カウンター ---
+				window.addEventListener('load', function () {
+					// 画面上の「.counter-number」という名前がついた場所を探す
+					const counterElement = document.querySelector('.counter-number');
+					const prefix = "000077"; // 777付近で寸止めする
 
-setInterval(() => {
-    // 0〜9の乱数を高速で生成して、最後の1桁としてくっつける
-    const randomDigit = Math.floor(Math.random() * 10);
-    counterTd.innerText = originalText + randomDigit;
-}, 50); // 0.05秒ごとに変化
-			}	</script>
+					if (counterElement) {
+						setInterval(() => {
+							// 0.05秒ごとに下一桁を0〜9でシャッフル
+							const randomDigit = Math.floor(Math.random() * 10);
+							counterElement.innerText = prefix + randomDigit;
+
+							// 運良く「7」になった時だけ光らせる（という煽り演出）
+							if (randomDigit === 7) {
+								counterElement.style.textShadow = "0 0 10px #00ff00";
+							} else {
+								counterElement.style.textShadow = "none";
+							}
+						}, 50);
+					}
+				});}	</script>
 </body>
 
 
