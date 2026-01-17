@@ -20,7 +20,9 @@ body {
     background-repeat: repeat;
     
     color: #ffff00 !important; /* 文字は黄色 */
-    font-family: "MS UI Gothic", "Saitamaar", sans-serif !important;
+    font-family: "MS UI Gothic", "MS PGothic", "Osaka", "MS Gothic", monospace !important;
+        -webkit-font-smoothing: none;
+        -moz-osx-font-smoothing: grayscale;
     
     /* 画面の微細な震え（モニター感） */
     animation: monitor-flicker 0.1s infinite;
@@ -87,4 +89,19 @@ a, a * {
 .retro-img {
     max-width: 100%; height: auto;
     display: block;
+}
+
+/* 一番下に追加(平成レトロ感を出すフォント) */
+h1,
+p,
+div,
+a,
+marquee,
+address,
+button,
+td,
+th {
+    font-family: "MS UI Gothic", "MS PGothic", "Osaka", sans-serif !important;
+    font-weight: normal !important;
+    /* 太字を解除するとより「あの頃」感が出ます */
 }
