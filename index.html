@@ -116,6 +116,15 @@
 			const p = prompt("パスワード？");
 			if (p === "人" || p === "ひと") alert("正解！");
 		}
+
+		// --- 6. 禁断の自動再生BGM（クリックで解禁） ---
+			const bgm = new Audio('picopico.mp3'); // ピコピコ系のフリー音源
+			bgm.loop = true; // ループ再生
+
+			// 画面のどこかをクリックしたらBGMが鳴り出す
+			document.addEventListener('click', () => {
+				bgm.play().catch(e => console.log("再生失敗（ブラウザの制限）"));
+			}, { once: true }); // 最初の1回だけ反応
 	</script>
 </body>
 
