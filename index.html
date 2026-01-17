@@ -15,6 +15,7 @@
 		</div>
 		<h1>ようこそ！Nazonohito のホームページへ！</h1>
 		<p class="blink-text">★ 相互リンク募集中です ★</p>
+
 		<div class="counter-text">
 			あなたは
 			<table border="5" cellspacing="0" cellpadding="5"
@@ -29,28 +30,30 @@
 			<br>
 			<span style="color: #ff0000; font-size: 0.9rem; display: block; margin-top: 5px;">（キリ番報告必須！）</span>
 		</div>
+
 		<hr size="10" color="#ff00ff">
-		<div class="main-image-frame">
-			<div id="loading-gate">
+
+		<div class="main-image-frame" style="position: relative; overflow: hidden;">
+			<div id="loading-gate"
+				style="position: absolute; top:0; left:0; width:100%; height:100%; background:#000; z-index:10; display:flex; align-items:center; justify-content:center;">
 				<div style="text-align: center;">
-					<p class="blink-text" id="loading-msg"
-						style="font-size: 2rem; color: #ffffff; background: #ff0000; display: inline-block; padding: 10px; margin: 10px;">
-						通信中... (56kbps)<br>
-						<progress max="100"></progress>
+					<p class="blink-text" style="font-size: 1.5rem; color: #ffffff; background: #ff0000; padding: 5px;">
+						通信中... (56kbps)
 					</p>
-					<div class="progress-container">
-						<div class="progress-bar" id="js-progress-bar" style="width: 0%"></div>
+					<div
+						style="width: 200px; height: 20px; background: #333; border: 2px inset #888; margin: 10px auto;">
+						<div id="js-progress-bar" style="width: 0%; height: 100%; background: #00ff00;"></div>
 					</div>
-					<p style="color: #00ff00; font-family: monospace; font-size: 0.8rem; margin-top: 5px;">
-						Loading: <span id="percent-text">0</span>%
-					</p>
+					<p style="color: #00ff00; font-family: monospace;">Loading: <span id="percent-text">0</span>%</p>
 				</div>
 			</div>
-			<div id="image-area"></div>
+			<img src="takaoPAR59143.jpg" alt="メイン画像" class="retro-img"
+				style="display: block; width: 100%; height: auto;">
 		</div>
+
 		<hr size="10" color="#ff00ff">
+
 		<div class="content">
-			<p>このサイトは、あえて1990年代の魂を継承しつつ、<br>最新のスマートフォンでの閲覧に完全対応（矛盾）しています。</p>
 			<nav class="retro-nav">
 				<a href="#">[プロフィール]</a>
 				<a href="javascript:void(0)" onclick="gatekeeper()">[魔法の言葉]</a>
@@ -66,70 +69,51 @@
 	</center>
 
 	<script>
-		// --- 1. はてなストーカー ---
-		const hateru = document.createElement('div');
-		hateru.innerHTML = '？';
-		hateru.style.cssText = 'position: fixed; pointer-events: none; z-index: 10000; color: yellow; font-weight: bold; font-size: 24px; text-shadow: 2px 2px 0 #000; display: none;';
-		document.body.appendChild(hateru);
-		document.addEventListener('mousemove', (e) => {
-			hateru.style.display = 'block';
-			hateru.style.left = (e.clientX + 15) + 'px';
-			hateru.style.top = (e.clientY + 15) + 'px';
-		});
-		document.addEventListener('mouseleave', () => { hateru.style.display = 'none'; });
-
-		// --- 2. Loading ---
-		window.addEventListener('load', function () {
-			const percentText = document.getElementById('percent-text');
-			const progressBar = document.getElementById('js-progress-bar');
-			let count = 0;
-			const interval = setInterval(() => {
-				count++;
-				if (percentText) percentText.innerText = count;
-				if (progressBar) progressBar.style.width = count + '%';
-				if (count >= 100) {
-					clearInterval(interval);
-					setTimeout(() => {
-						const gate = document.getElementById('loading-gate');
-						if (gate) gate.style.display = 'none';
-						const area = document.getElementById('image-area');
-						if (area && !area.innerHTML) {
-							area.innerHTML = '<img src="takaoPAR59143.jpg" alt="メイン画像" class="retro-img">';
-						}
-					}, 500);
-				}
-			}, 80);
-		});
-
-		// --- 3. 右クリック禁止 ---
-		document.oncontextmenu = function () {
-			alert('★右クリック禁止★\n画像の無断転載はやめてね！(・∀・)');
-			return false;
-		};
-
-		// --- 4. 門番 ---
-		function gatekeeper() {
-			const password = prompt("【認証】パスワードを入力してください\n（ヒント：このサイトの管理人は「謎の〇〇」）", "");
-			if (password === "人" || password === "ひと") {
-				alert("正解！でもまだページがないんだ。ごめんね！ (・ω<)");
-			} else if (password !== null) {
-				alert("不届き者め！立ち去れ！");
-			}
-		}
-
-		// --- 5. 爆速カウンター (IDで確実に狙い撃ち) ---
-		const target = document.getElementById('bousou-counter');
-		const prefix = "000077";
-		if (target) {
+		// --- 1. 爆速カウンター (ページ読み込みと同時に開始) ---
+		(function () {
+			const target = document.getElementById('bousou-counter');
+			const prefix = "000077";
 			setInterval(() => {
-				const digit = Math.floor(Math.random() * 10);
-				target.innerText = prefix + digit;
-				if (digit === 7) {
-					target.style.textShadow = "0 0 10px #00ff00, 0 0 20px #00ff00";
-				} else {
-					target.style.textShadow = "none";
+				if (target) {
+					const digit = Math.floor(Math.random() * 10);
+					target.innerText = prefix + digit;
+					target.style.textShadow = (digit === 7) ? "0 0 15px #00ff00" : "none";
 				}
 			}, 50);
+		})();
+
+		// --- 2. Loading制御 (画像を上書きせず、黒い幕を消すだけにする) ---
+		window.addEventListener('load', () => {
+			const pText = document.getElementById('percent-text');
+			const pBar = document.getElementById('js-progress-bar');
+			const gate = document.getElementById('loading-gate');
+			let count = 0;
+			const timer = setInterval(() => {
+				count++;
+				if (pText) pText.innerText = count;
+				if (pBar) pBar.style.width = count + '%';
+				if (count >= 100) {
+					clearInterval(timer);
+					setTimeout(() => { if (gate) gate.style.display = 'none'; }, 500);
+				}
+			}, 50);
+		});
+
+		// --- 3. はてなストーカー ---
+		const h = document.createElement('div');
+		h.innerHTML = '？';
+		h.style.cssText = 'position:fixed; pointer-events:none; z-index:10000; color:yellow; font-weight:bold; font-size:24px; text-shadow:2px 2px 0 #000; display:none;';
+		document.body.appendChild(h);
+		document.addEventListener('mousemove', (e) => {
+			h.style.display = 'block';
+			h.style.left = (e.clientX + 15) + 'px'; h.style.top = (e.clientY + 15) + 'px';
+		});
+
+		// --- 4. その他 ---
+		document.oncontextmenu = () => { alert('★右クリック禁止★'); return false; };
+		function gatekeeper() {
+			const p = prompt("パスワード？");
+			if (p === "人" || p === "ひと") alert("正解！");
 		}
 	</script>
 </body>
