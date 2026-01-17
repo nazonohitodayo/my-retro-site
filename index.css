@@ -20,9 +20,14 @@ body {
     background-repeat: repeat;
     
     color: #ffff00 !important; /* 文字は黄色 */
-    font-family: "MS UI Gothic", "MS PGothic", "Osaka", "MS Gothic", monospace !important;
+    /* Noto Sans はあえて書かない。古いフォントを左に持ってくる */
+        font-family: "MS UI Gothic", "MS PGothic", "Osaka", sans-serif !important;
+    
+        /* ブラウザの「綺麗にする機能」をオフにする（重要！） */
         -webkit-font-smoothing: none;
         -moz-osx-font-smoothing: grayscale;
+        image-rendering: pixelated;
+        /* ついでに画像もドットを強調 */
     
     /* 画面の微細な震え（モニター感） */
     animation: monitor-flicker 0.1s infinite;
