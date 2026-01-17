@@ -33,7 +33,7 @@
 
 		<hr size="10" color="#ff00ff">
 
-		<div class="main-image-frame" style="position: relative; overflow: hidden;">
+		<div class="main-image-frame" style="position: relative; overflow: hidden; display: inline-block;">
 			<div id="loading-gate"
 				style="position: absolute; top:0; left:0; width:100%; height:100%; background:#000; z-index:10; display:flex; align-items:center; justify-content:center;">
 				<div style="text-align: center;">
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<img src="takaoPAR59143.jpg" alt="メイン画像" class="retro-img"
-				style="display: block; width: 100%; height: auto;">
+				style="display: block; width: 100%; max-width: 400px; height: auto;">
 		</div>
 
 		<hr size="10" color="#ff00ff">
@@ -69,20 +69,18 @@
 	</center>
 
 	<script>
-		// --- 1. 爆速カウンター (ページ読み込みと同時に開始) ---
-		(function () {
-			const target = document.getElementById('bousou-counter');
-			const prefix = "000077";
+		// 1. 爆速カウンター
+		const counterTarget = document.getElementById('bousou-counter');
+		const prefix = "000077";
+		if (counterTarget) {
 			setInterval(() => {
-				if (target) {
-					const digit = Math.floor(Math.random() * 10);
-					target.innerText = prefix + digit;
-					target.style.textShadow = (digit === 7) ? "0 0 15px #00ff00" : "none";
-				}
+				const digit = Math.floor(Math.random() * 10);
+				counterTarget.innerText = prefix + digit;
+				counterTarget.style.textShadow = (digit === 7) ? "0 0 15px #00ff00" : "none";
 			}, 50);
-		})();
+		}
 
-		// --- 2. Loading制御 (画像を上書きせず、黒い幕を消すだけにする) ---
+		// 2. Loading
 		window.addEventListener('load', () => {
 			const pText = document.getElementById('percent-text');
 			const pBar = document.getElementById('js-progress-bar');
@@ -99,18 +97,21 @@
 			}, 50);
 		});
 
-		// --- 3. はてなストーカー ---
+		// 3. はてなストーカー
 		const h = document.createElement('div');
 		h.innerHTML = '？';
 		h.style.cssText = 'position:fixed; pointer-events:none; z-index:10000; color:yellow; font-weight:bold; font-size:24px; text-shadow:2px 2px 0 #000; display:none;';
 		document.body.appendChild(h);
 		document.addEventListener('mousemove', (e) => {
 			h.style.display = 'block';
-			h.style.left = (e.clientX + 15) + 'px'; h.style.top = (e.clientY + 15) + 'px';
+			h.style.left = (e.clientX + 15) + 'px';
+			h.style.top = (e.clientY + 15) + 'px';
 		});
 
-		// --- 4. その他 ---
+		// 4. 右クリック禁止
 		document.oncontextmenu = () => { alert('★右クリック禁止★'); return false; };
+
+		// 5. 門番
 		function gatekeeper() {
 			const p = prompt("パスワード？");
 			if (p === "人" || p === "ひと") alert("正解！");
