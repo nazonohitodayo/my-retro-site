@@ -11,10 +11,12 @@
 <body>
 	<center>
 		<div style="font-size: 0.8rem; color: #00ff00; margin-top: 10px;">
-			♪ BGM ON (Click anywhere to Start!) ♪
+			<!-- ♪ BGM ON (Click anywhere to Start!) ♪ -->
 		</div>
 		<div class="marquee-area">
 			<marquee>2026年最新技術を駆使した平成レトロサイトへようこそ！！掲示板はマナーを守って使ってね！！</marquee>
+		</div>
+		<div style="font-size: 0.8rem; color: #ff00ff; margin-bottom: 10px;"><marquee>【音量注意】画面クリックでBGMの ON/OFF が切り替わります！</marquee>	
 		</div>
 		<h1>ようこそ！Nazonohito のホームページへ！</h1>
 		<p class="blink-text">★ 相互リンク募集中です ★</p>
@@ -120,14 +122,25 @@
 			if (p === "人" || p === "ひと") alert("正解！");
 		}
 
-		// --- 6. 禁断の自動再生BGM（クリックで解禁） ---
-			const bgm = new Audio('picopico.mp3'); // ピコピコ系のフリー音源
-			bgm.loop = true; // ループ再生
+		// --- 6. 禁断のBGM（クリックで再生/停止を切り替え） ---
+			const bgm = new Audio('picopico.mp3');
+			bgm.loop = true;
 
-			// 画面のどこかをクリックしたらBGMが鳴り出す
+			// 状態を管理する変数
+			let isPlaying = false;
+
+			// 画面のどこかをクリックした時の処理
 			document.addEventListener('click', () => {
-				bgm.play().catch(e => console.log("再生失敗（ブラウザの制限）"));
-			}, { once: true }); // 最初の1回だけ反応
+				if (!isPlaying) {
+					bgm.play();
+					isPlaying = true;
+					console.log("BGM再生中...");
+				} else {
+					bgm.pause();
+					isPlaying = false;
+					console.log("BGM停止中...");
+				}
+			}, false);
 	</script>
 </body>
 
