@@ -77,100 +77,91 @@
 	</center>
 
 	<script>
-// --- 執念のはてな出現マジック ---
-const hateru = document.createElement('div');
-hateru.innerHTML = '？';
-hateru.style.cssText = `
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    color: yellow;
-    font-weight: bold;
-    font-size: 24px;
-    text-shadow: 2px 2px 0 #000;
-    display: none;
-`;
-document.body.appendChild(hateru);
+		// --- 1. 執念のはてなストーカー ---
+		const hateru = document.createElement('div');
+		hateru.innerHTML = '？';
+		hateru.style.cssText = `
+	        position: fixed;
+	        pointer-events: none;
+	        z-index: 10000;
+	        color: yellow;
+	        font-weight: bold;
+	        font-size: 24px;
+	        text-shadow: 2px 2px 0 #000;
+	        display: none;
+	    `;
+		document.body.appendChild(hateru);
 
-// マウスが動いたらはてなを表示して追いかける
-document.addEventListener('mousemove', (e) => {
-    hateru.style.display = 'block';
-    hateru.style.left = (e.clientX + 15) + 'px';
-    hateru.style.top = (e.clientY + 15) + 'px';
-});
+		document.addEventListener('mousemove', (e) => {
+			hateru.style.display = 'block';
+			hateru.style.left = (e.clientX + 15) + 'px';
+			hateru.style.top = (e.clientY + 15) + 'px';
+		});
 
-// 画面からマウスが外れたら隠す
-document.addEventListener('mouseleave', () => {
-    hateru.style.display = 'none';
-});
-		
+		document.addEventListener('mouseleave', () => {
+			hateru.style.display = 'none';
+		});
+
+		// --- 2. 通信中（Loading）の制御 ---
 		window.addEventListener('load', function () {
 			const percentText = document.getElementById('percent-text');
-			const progressBar = document.getElementById('js-progress-bar'); // IDで取得
+			const progressBar = document.getElementById('js-progress-bar');
 
 			let count = 0;
 			const interval = setInterval(() => {
 				count++;
 				if (percentText) percentText.innerText = count;
-				// JSでバーの長さも制御すると数字と完全に同期します
 				if (progressBar) progressBar.style.width = count + '%';
 
 				if (count >= 100) {
 					clearInterval(interval);
-					// 100%になったら看板を消す（CSSアニメーションとズレるのを防ぐ）
 					setTimeout(() => {
 						const gate = document.getElementById('loading-gate');
 						if (gate) gate.style.display = 'none';
-
-						// 画像を表示
 						const area = document.getElementById('image-area');
 						if (area && !area.innerHTML) {
 							area.innerHTML = '<img src="takaoPAR59143.jpg" alt="メイン画像" class="retro-img">';
 						}
 					}, 500);
 				}
-			}, 250);
+			}, 150); // 少し速くしました
 		});
-		// --- 【追加】ここから下を追加してください ---
 
-			// 右クリック禁止（これは今動いているもの）
-			document.oncontextmenu = function () {
-				alert('★右クリック禁止★\n画像の無断転載はやめてね！(・∀・)');
-				return false;
-			};
+		// --- 3. 右クリック禁止 ---
+		document.oncontextmenu = function () {
+			alert('★右クリック禁止★\n画像の無断転載はやめてね！(・∀・)');
+			return false;
+		};
 
-			// 門番（パスワード入力）
-			function gatekeeper() {
-				const password = prompt("【認証】パスワードを入力してください\n（ヒント：このサイトの管理人は「謎の〇〇」）", "");
-				if (password === "人" || password === "ひと") {
-					alert("正解！でもまだページがないんだ。ごめんね！");
-				} else if (password !== null) { // キャンセル時は何もしない
-					alert("不届き者め！立ち去れ！");
-				}
+		// --- 4. 門番（パスワード入力） ---
+		function gatekeeper() {
+			const password = prompt("【認証】パスワードを入力してください\n（ヒント：このサイトの管理人は「謎の〇〇」）", "");
+			if (password === "人" || password === "ひと") {
+				alert("正解！でもまだページがないんだ。ごめんね！(・ω<)");
+			} else if (password !== null) {
+				alert("不届き者め！立ち去れ！");
+			}
+		}
 
-				// --- キリ番を狙わせない！爆速カウンター ---
-				window.addEventListener('DOMContentLoaded', (event) => {
-					// 1. カウンターの場所を特定
-					const counterDisplay = document.querySelector('.counter-number');
-					const staticPart = "000077"; // 常に表示する部分
+		// --- 5. キリ番を狙わせない！爆速カウンター（ここを関数から出しました） ---
+		window.addEventListener('DOMContentLoaded', (event) => {
+			const counterDisplay = document.querySelector('.counter-number');
+			const staticPart = "000077";
 
-					if (counterDisplay) {
-						// 2. 0.05秒ごとに爆速で動かす
-						setInterval(() => {
-							const randomDigit = Math.floor(Math.random() * 10);
-							counterDisplay.innerText = staticPart + randomDigit;
+			if (counterDisplay) {
+				setInterval(() => {
+					const randomDigit = Math.floor(Math.random() * 10);
+					counterDisplay.innerText = staticPart + randomDigit;
 
-							// 7の時だけ光らせる演出
-							if (randomDigit === 7) {
-								counterDisplay.style.textShadow = "0 0 10px #00ff00, 0 0 20px #00ff00";
-							} else {
-								counterDisplay.style.textShadow = "none";
-							}
-						}, 50);
+					if (randomDigit === 7) {
+						counterDisplay.style.textShadow = "0 0 10px #00ff00, 0 0 20px #00ff00";
 					} else {
-						console.log("カウンターの場所が見つかりませんでした。HTMLのclassを確認してください！");
+						counterDisplay.style.textShadow = "none";
 					}
-				});}	</script>
+				}, 50);
+			}
+		});
+	</script>
 </body>
 
 
