@@ -13,10 +13,8 @@
 		<div class="marquee-area">
 			<marquee>2026年最新技術を駆使した平成レトロサイトへようこそ！！掲示板はマナーを守って使ってね！！</marquee>
 		</div>
-
 		<h1>ようこそ！Nazonohito のホームページへ！</h1>
 		<p class="blink-text">★ 相互リンク募集中です ★</p>
-
 		<div class="counter-text">
 			あなたは
 			<table border="5" cellspacing="0" cellpadding="5"
@@ -27,13 +25,9 @@
 			</table>
 			番目の訪問者です！
 			<br>
-			<span style="color: #ff0000; font-size: 0.9rem; display: block; margin-top: 5px;">
-				（キリ番報告必須！）
-			</span>
+			<span style="color: #ff0000; font-size: 0.9rem; display: block; margin-top: 5px;">（キリ番報告必須！）</span>
 		</div>
-
 		<hr size="10" color="#ff00ff">
-
 		<div class="main-image-frame">
 			<div id="loading-gate">
 				<div style="text-align: center;">
@@ -52,13 +46,9 @@
 			</div>
 			<div id="image-area"></div>
 		</div>
-
 		<hr size="10" color="#ff00ff">
-
 		<div class="content">
-			<p>このサイトは、あえて1990年代の魂を継承しつつ、<br>
-				最新のスマートフォンでの閲覧に完全対応（矛盾）しています。</p>
-
+			<p>このサイトは、あえて1990年代の魂を継承しつつ、<br>最新のスマートフォンでの閲覧に完全対応（矛盾）しています。</p>
 			<nav class="retro-nav">
 				<a href="#">[プロフィール]</a>
 				<a href="javascript:void(0)" onclick="gatekeeper()">[魔法の言葉]</a>
@@ -66,53 +56,35 @@
 				<a href="#">[BBS]</a>
 			</nav>
 		</div>
-
 		<hr size="10" color="#00ffff">
-
 		<address>Copyright (C) 2026 Nazonohito feat.Gemini. All Rights Reserved.</address>
-
 		<div class="admin-only">
 			<a href="https://nazonohitodayo.github.io/firsthomepage/">[前回のオシャレサイトへ戻る]</a>
 		</div>
 	</center>
 
 	<script>
-		// --- 1. 執念のはてなストーカー ---
+		// --- 1. はてなストーカー ---
 		const hateru = document.createElement('div');
 		hateru.innerHTML = '？';
-		hateru.style.cssText = `
-            position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            color: yellow;
-            font-weight: bold;
-            font-size: 24px;
-            text-shadow: 2px 2px 0 #000;
-            display: none;
-        `;
+		hateru.style.cssText = 'position: fixed; pointer-events: none; z-index: 10000; color: yellow; font-weight: bold; font-size: 24px; text-shadow: 2px 2px 0 #000; display: none;';
 		document.body.appendChild(hateru);
-
 		document.addEventListener('mousemove', (e) => {
 			hateru.style.display = 'block';
 			hateru.style.left = (e.clientX + 15) + 'px';
 			hateru.style.top = (e.clientY + 15) + 'px';
 		});
+		document.addEventListener('mouseleave', () => { hateru.style.display = 'none'; });
 
-		document.addEventListener('mouseleave', () => {
-			hateru.style.display = 'none';
-		});
-
-		// --- 2. 通信中（Loading）の制御 ---
+		// --- 2. Loading ---
 		window.addEventListener('load', function () {
 			const percentText = document.getElementById('percent-text');
 			const progressBar = document.getElementById('js-progress-bar');
-
 			let count = 0;
 			const interval = setInterval(() => {
 				count++;
 				if (percentText) percentText.innerText = count;
 				if (progressBar) progressBar.style.width = count + '%';
-
 				if (count >= 100) {
 					clearInterval(interval);
 					setTimeout(() => {
@@ -124,7 +96,7 @@
 						}
 					}, 500);
 				}
-			}, 150);
+			}, 100);
 		});
 
 		// --- 3. 右クリック禁止 ---
@@ -133,34 +105,30 @@
 			return false;
 		};
 
-		// --- 4. 門番（パスワード入力） ---
+		// --- 4. 門番 ---
 		function gatekeeper() {
 			const password = prompt("【認証】パスワードを入力してください\n（ヒント：このサイトの管理人は「謎の〇〇」）", "");
 			if (password === "人" || password === "ひと") {
-				alert("正解！でもまだページがないんだ。ごめんね！ (・ω<)");
+				alert("正解！でもまだページがないんだ。ごめんね！");
 			} else if (password !== null) {
 				alert("不届き者め！立ち去れ！");
 			}
 		}
 
-		// --- 5. キリ番を狙わせない！爆速カウンター ---
-		window.addEventListener('DOMContentLoaded', (event) => {
-			const counterDisplay = document.querySelector('.counter-number');
-			const staticPart = "000077";
-
-			if (counterDisplay) {
-				setInterval(() => {
-					const randomDigit = Math.floor(Math.random() * 10);
-					counterDisplay.innerText = staticPart + randomDigit;
-
-					if (randomDigit === 7) {
-						counterDisplay.style.textShadow = "0 0 10px #00ff00, 0 0 20px #00ff00";
-					} else {
-						counterDisplay.style.textShadow = "none";
-					}
-				}, 50);
-			}
-		});
+		// --- 5. 爆速カウンター ---
+		const counterDisplay = document.querySelector('.counter-number');
+		const staticPart = "000077";
+		if (counterDisplay) {
+			setInterval(() => {
+				const randomDigit = Math.floor(Math.random() * 10);
+				counterDisplay.innerText = staticPart + randomDigit;
+				if (randomDigit === 7) {
+					counterDisplay.style.textShadow = "0 0 10px #00ff00, 0 0 20px #00ff00";
+				} else {
+					counterDisplay.style.textShadow = "none";
+				}
+			}, 50);
+		}
 	</script>
 </body>
 
