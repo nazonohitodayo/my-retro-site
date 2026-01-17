@@ -81,15 +81,15 @@
 		const hateru = document.createElement('div');
 		hateru.innerHTML = '？';
 		hateru.style.cssText = `
-	        position: fixed;
-	        pointer-events: none;
-	        z-index: 10000;
-	        color: yellow;
-	        font-weight: bold;
-	        font-size: 24px;
-	        text-shadow: 2px 2px 0 #000;
-	        display: none;
-	    `;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            color: yellow;
+            font-weight: bold;
+            font-size: 24px;
+            text-shadow: 2px 2px 0 #000;
+            display: none;
+        `;
 		document.body.appendChild(hateru);
 
 		document.addEventListener('mousemove', (e) => {
@@ -124,7 +124,7 @@
 						}
 					}, 500);
 				}
-			}, 150); // 少し速くしました
+			}, 150);
 		});
 
 		// --- 3. 右クリック禁止 ---
@@ -137,13 +137,13 @@
 		function gatekeeper() {
 			const password = prompt("【認証】パスワードを入力してください\n（ヒント：このサイトの管理人は「謎の〇〇」）", "");
 			if (password === "人" || password === "ひと") {
-				alert("正解！でもまだページがないんだ。ごめんね！(・ω<)");
+				alert("正解！でもまだページがないんだ。ごめんね！ (・ω<)");
 			} else if (password !== null) {
 				alert("不届き者め！立ち去れ！");
 			}
 		}
 
-		// --- 5. キリ番を狙わせない！爆速カウンター（ここを関数から出しました） ---
+		// --- 5. キリ番を狙わせない！爆速カウンター ---
 		window.addEventListener('DOMContentLoaded', (event) => {
 			const counterDisplay = document.querySelector('.counter-number');
 			const staticPart = "000077";
@@ -164,9 +164,4 @@
 	</script>
 </body>
 
-
 </html>
-
-
-
-
