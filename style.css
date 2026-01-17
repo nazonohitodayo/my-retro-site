@@ -63,9 +63,16 @@ a:visited {
 	text-decoration: underline double !important;
 	/* 二重下線で「あらがい」を表現 */
 	text-shadow: 2px 2px 0px #000000;
-	/* */
+	/* 赤い文字に黒い影がついて、紺色の背景の上でもクッキリ浮き上がって見えるようになります！*/
 	font-weight: bold !important;
 	padding: 0 2px;
+}
+
+a:hover {
+	/* マウスを乗せた時に色を反転させる（当時の定番演出） */
+	color: #ffffff !important;
+	background-color: #ff0000 !important;
+	text-decoration: none !important;
 }
 
 a:hover {
