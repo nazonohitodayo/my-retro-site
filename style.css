@@ -148,3 +148,17 @@ th {
 	font-family: "DotGothic16", "MS UI Gothic", "MS PGothic", "Osaka", sans-serif !important;
 	font-weight: normal !important;
 }
+
+/* 隠しテキストをマウスでなぞった時の色を指定 */
+.hidden-message::selection {
+	background-color: #ffff00;
+	/* 反転した時に黄色背景にする */
+	color: #000080;
+	/* 文字は紺色に */
+}
+
+/* 一部のブラウザ（Firefoxなど）用 */
+.hidden-message::-moz-selection {
+	background-color: #ffff00;
+	color: #000080;
+}
