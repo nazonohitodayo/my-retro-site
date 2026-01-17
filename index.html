@@ -151,25 +151,39 @@
 				</h3>
 			
 				<div style="border: 1px inset #888; background: #eee; padding: 5px; margin-bottom: 10px; font-size: 12px;">
-					名前: <input type="text" size="10" disabled>
-					内容: <input type="text" size="20" disabled>
-					<button style="font-size: 10px;">書込</button>
+					名前: <input type="text" id="bbs-name" size="10" placeholder="名無しさん">
+					内容: <input type="text" id="bbs-content" size="20">
+					<button onclick="addDummyPost()" style="font-size: 10px; cursor: pointer;">書込</button>
 				</div>
 			
-				<div style="text-align: left; font-size: 12px; font-family: 'DotGothic16';">
+				<div id="bbs-list" style="text-align: left; font-size: 12px; font-family: 'DotGothic16';">
 					<div style="border-bottom: 1px dotted #888; margin-bottom: 5px;">
 						<span style="color: blue;">[1]</span> <b>名無しさん</b> <small>2026/01/17 12:34</small><br>
 						100万キリ番ゲットしました！！相互リンクお願いします！
 					</div>
 					<div style="border-bottom: 1px dotted #888; margin-bottom: 5px;">
 						<span style="color: blue;">[2]</span> <b>管理人</b> <small>2026/01/17 12:40</small><br>
-						> 名無しさん　報告ありがとうございます！バナー貼らせていただきますね。
-					</div>
-					<div style="border-bottom: 1px dotted #888; margin-bottom: 5px;">
-						<span style="color: blue;">[3]</span> <b>通りすがり</b> <small>2026/01/17 13:00</small><br>
-						このサイト、フォントがカクカクしてて落ち着きますねw
+						> 名無しさん 報告ありがとうございます！バナー貼らせていただきますね。
 					</div>
 				</div>
+<div style="border-bottom: 1px dotted #888; margin-bottom: 5px;">
+<span style="color: blue;">[3]</span> <b>通りすがり</b> <small>2026/01/17 13:00</small><br>
+	このサイト、フォントがカクカクしてて落ち着きますねw
+</div>
+			
+				<script>
+					function addDummyPost() {
+						const name = document.getElementById('bbs-name').value || "名無しさん";
+						const content = document.getElementById('bbs-content').value;
+						if (!content) return alert("内容を入力してください！");
+
+						alert("書き込みありがとうございます！\n(※このメッセージはブラウザにのみ表示されます)");
+
+						// 入力欄をクリア
+						document.getElementById('bbs-name').value = "";
+						document.getElementById('bbs-content').value = "";
+					}
+				</script>
 			
 				<p style="font-size: 10px; text-align: right; margin-top: 5px;">[ 過去ログを読む ] [ 管理用 ]</p>
 			</section>
