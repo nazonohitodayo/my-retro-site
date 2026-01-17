@@ -54,11 +54,25 @@ body {
 	}
 }
 
-/* --- 3. リンクの設定（赤色＋下線） --- */
+/* --- 3. リンクの設定（背景に負けない超・強調） --- */
 a,
-a * {
+a:visited {
+	/* 背景が濃い紺色なので、明るい赤やシアン、または白が映えます */
 	color: #ff0000 !important;
-	text-decoration: underline !important;
+	/* 基本は赤 */
+	text-decoration: underline double !important;
+	/* 二重下線で「あらがい」を表現 */
+	text-shadow: 2px 2px 0px #000000;
+	/* */
+	font-weight: bold !important;
+	padding: 0 2px;
+}
+
+a:hover {
+	/* マウスを乗せた時に色を反転させる（当時の定番演出） */
+	color: #ffffff !important;
+	background-color: #ff0000 !important;
+	text-decoration: none !important;
 }
 
 /* --- 4. カウンター --- */
