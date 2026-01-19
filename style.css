@@ -162,3 +162,19 @@ th {
 	background-color: #ffff00;
 	color: #000080;
 }
+
+.modern-link-gate {
+	border: 2px outset #ff00ff;
+	/* 昔懐かしい立体的な枠線 */
+	background-color: #000000;
+	padding: 10px;
+	display: inline-block;
+	text-decoration: none;
+	color: #00ff00;
+	/* 蛍光グリーン */
+}
+
+.modern-link-gate:hover {
+	background-color: #ff00ff;
+	color: #ffffff;
+}
