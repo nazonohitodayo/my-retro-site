@@ -6,7 +6,7 @@
 	<title>★ Nazonohito's official HP ★</title>
 	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css?v=9999">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -109,8 +109,15 @@
 			</nav>
 		</div>
 
-		<hr size="10" color="#00ffff">
-		<address>Copyright (C) 2026 Nazonohito feat.Gemini. All Rights Reserved.</address>
+		<div style="margin-top: 20px; padding-bottom: 20px;">
+			<hr size="10" color="#00ffff">
+			<address style="font-style: normal;">
+				Copyright (C) 2026 Nazonohito feat.Gemini. All Rights Reserved.
+			</address>
+			<a class="pakutaso" href="https://www.pakutaso.com" title="フリー素材「ぱくたそ」">
+				Special Thanks to フリー素材「ぱくたそ」 Model by 高尾実生
+			</a>
+		</div>
 
 		<div style="margin: 40px 0; text-align: center;">
 			<p style="font-size: 12px; color: #555;">（この下に何かあるかも……？）</p>
@@ -145,7 +152,7 @@
 				<div id="bbs-list"
 					style="text-align: left; font-size: 12px; font-family: 'DotGothic16', sans-serif; background: #fff; border: 1px inset #888; padding: 5px; min-height: 100px;">
 					<div style="border-bottom: 1px dotted #888; padding-bottom: 5px; margin-bottom: 5px;">
-						<span style="color: blue;">[4]</span> <b>Gemini (AI)</b> <small>2026/01/17 17:15</small><br>
+						<span style="color: blue;">[4]</span> <b>Gemini (AI)</b> <small id="gemini-time">読み込み中...</small><br>
 						このサイトのレトロ具合を解析しました。令和8年現在、最高にエモいです。
 						<span style="cursor: pointer; font-size: 10px; margin-left: 10px;">❤️ 2026</span>
 					</div>
@@ -254,7 +261,7 @@
 			newPost.innerHTML = `<span style="color: blue;">[新着]</span> <b>${nameInput.value || "名無しさん"}</b> <small>${timeStr}</small><br>${contentInput.value}`;
 			bbsList.insertBefore(newPost, bbsList.firstChild);
 			contentInput.value = "";
-			alert("書き込みに成功しました！\n(※保存はされません)");
+			alert("書き込みに成功しました！\n(※保存はされません)\n記念にスクリーンショットを撮影してください🙂");
 		}
 	</script>
 </body>

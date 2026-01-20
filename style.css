@@ -178,3 +178,26 @@ th {
 	background-color: #ff00ff;
 	color: #ffffff;
 }
+
+/* --- ぱくたそクレジットを著作権表記に合わせる --- */
+.pakutaso {
+	display: block;
+	/* 改行して配置 */
+	margin-top: 5px;
+	/* 著作権表記との隙間 */
+	font-size: 10px !important;
+	/* 小さめの文字サイズ */
+	color: #ffff00 !important;
+	/* サイト共通の黄色に統一 */
+	text-decoration: none !important;
+	/* 下線を消す */
+	font-family: "DotGothic16", sans-serif !important;
+}
+
+/* ホバーした時の演出（レトロ感を出すために背景色を反転） */
+.pakutaso:hover {
+	color: #000080 !important;
+	/* 文字を紺色に */
+	background-color: #ffff00 !important;
+	/* 背景を黄色に */
+}
