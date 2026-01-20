@@ -208,7 +208,7 @@
 			}, 20);
 		});
 
-		// 3. はてなストーカー
+		// 3. はてなストーカー & 4. 右クリック禁止
 		const h = document.createElement('div');
 		h.innerHTML = '？';
 		h.style.cssText = 'position:fixed; pointer-events:none; z-index:10000; color:yellow; font-weight:bold; font-size:24px; text-shadow:2px 2px 0 #000; display:none;';
@@ -218,8 +218,6 @@
 			h.style.left = (e.clientX + 15) + 'px';
 			h.style.top = (e.clientY + 15) + 'px';
 		});
-
-		// 4. 右クリック禁止
 		document.oncontextmenu = () => { alert('★右クリック禁止★'); return false; };
 
 		// 5. 門番
@@ -261,8 +259,24 @@
 			newPost.innerHTML = `<span style="color: blue;">[新着]</span> <b>${nameInput.value || "名無しさん"}</b> <small>${timeStr}</small><br>${contentInput.value}`;
 			bbsList.insertBefore(newPost, bbsList.firstChild);
 			contentInput.value = "";
-			alert("書き込みに成功しました！\n(※保存はされません)\n記念にスクリーンショットを撮影してください🙂");
+			alert("書き込みに成功しました！\n(※保存はされません)");
 		}
+
+		// 🌟 8. Geminiの投稿時間を現在の日本時間に書き換える魔法 (ここを追加！)
+		const updateGeminiTime = () => {
+			const geminiTimeElement = document.getElementById('gemini-time');
+			if (!geminiTimeElement) return;
+			const now = new Date();
+			const year = now.getFullYear();
+			const month = String(now.getMonth() + 1).padStart(2, '0');
+			const day = String(now.getDate()).padStart(2, '0');
+			const hours = String(now.getHours()).padStart(2, '0');
+			const minutes = String(now.getMinutes()).padStart(2, '0');
+			const timeStr = `${year}/${month}/${day} ${hours}:${minutes}`;
+			geminiTimeElement.innerText = timeStr;
+		};
+		// ページ読み込み完了時に実行
+		window.addEventListener('DOMContentLoaded', updateGeminiTime);
 	</script>
 </body>
 
