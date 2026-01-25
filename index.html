@@ -106,6 +106,12 @@
 				<a href="javascript:void(0)" onclick="gatekeeper()">[魔法の言葉]</a>
 				<a href="javascript:void(0)" onclick="alert('まだ工事中だよ！一生懸命作ってるから待っててね！')">[工事中]</a>
 				<a href="#bbs-anchor">[BBS]</a>
+				<div id="guard-container" style="height: 100px; position: relative;">
+					<a href="secret.html" id="scary-link" onclick="guardGate(event)"
+						style="position: absolute; color: #ff00ff; text-decoration: none; font-weight: bold; background: #000; padding: 5px; border: 1px solid #00ff00;">
+						[ 秘密の入口 ]
+					</a>
+				</div>
 			</nav>
 		</div>
 
@@ -277,6 +283,46 @@
 		};
 		// ページ読み込み完了時に実行
 		window.addEventListener('DOMContentLoaded', updateGeminiTime);
+	
+			const scaryLink = document.getElementById('scary-link');
+
+    // --- 第一の守護：逃走 ---
+    scaryLink.addEventListener('mouseover', () => {
+        // 画面内のランダムな位置にワープ（端に行き過ぎないよう計算）
+        const x = Math.random() * (window.innerWidth - scaryLink.clientWidth - 50);
+			const y = Math.random() * (window.innerHeight - scaryLink.clientHeight - 50);
+
+			scaryLink.style.left = x + 'px';
+			scaryLink.style.top = y + 'px';
+			scaryLink.style.position = 'fixed'; // 画面全体を逃げ回るように
+    });
+
+			// --- 第二・第三の守護：無限確認 ＆ 合言葉 ---
+			function guardGate(event) {
+				event.preventDefault(); // すぐには飛ばさない
+
+			// 無限確認（しつこいほど効果的）
+			if (confirm("……本気ですか？")) {
+            if (confirm("ここから先は、あなたの知っているインターネットではありませんよ？")) {
+                if (confirm("何が起きても、制作者を恨まないと誓いますか？")) {
+                    if (confirm("本当に、本当に、本当にいいんですね？")) {
+                        
+                        // 合言葉（お姉さんの苗字）
+                        const pass = prompt("【最終認証】合言葉を入力してください（ヒント：モデルのお姉さんの苗字は？）");
+
+			if (pass === "高尾") {
+				alert("……認めましょう。深淵へようこそ。");
+			window.location.href = "secret.html";
+                        } else {
+				alert("名前すら知らぬ者に、開く扉はありません。");
+			window.location.href = "https://www.google.com"; // 追放
+                        }
+                    }
+                }
+            }
+        }
+    }
+	
 	</script>
 </body>
 
