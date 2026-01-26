@@ -1,29 +1,99 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+	<title>【極秘】正解者専用ページ</title>
 	<style>
-	body {background-image:url("takao_happy.jpg");
-	background-size: cover;
-	}
-	h1{
-	.hachi-maru-pop-regular {
-  font-family: "Hachi Maru Pop", cursive;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 60px;
-}
-	
-	}
+		body {
+			background-color: #c0c0c0;
+			font-family: "MS PGothic", "system-ui", sans-serif;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding-top: 30px;
+		}
+
+		.window {
+			width: 450px;
+			background: #fff;
+			border: 2px inset #fff;
+			box-shadow: 2px 2px 0 #000;
+			padding: 20px;
+			position: relative;
+		}
+
+		.scroll-box {
+			width: 100%;
+			height: 200px;
+			overflow-y: scroll;
+			border: 1px inset #888;
+			background: #eee;
+			font-size: 11px;
+			line-height: 1.5;
+			color: #333;
+			margin: 10px 0;
+			padding: 5px;
+			box-sizing: border-box;
+		}
+
+		/* お姉さんの画像を右上に配置 */
+		.admin-photo {
+			width: 80px;
+			border: 1px solid #000;
+			float: right;
+			margin-left: 10px;
+		}
+
+		h1 {
+			font-size: 16px;
+			color: #000;
+			margin-top: 0;
+		}
+
+		button {
+			background: #c0c0c0;
+			border: 2px outset #fff;
+			padding: 5px 20px;
+			cursor: not-allowed;
+			font-size: 12px;
+		}
 	</style>
-	<title>お見事🙂</title>
 </head>
+
 <body>
-	<h1>お見事です</h1>
-	<a href="index.html"> <img src="nazonohito.gif" alt=""></a>
+
+	<div class="window">
+		<img src="takao_happy.jpg" alt="管理者" class="admin-photo">
+
+		<h1>🎉 正解おめでとう 🎉</h1>
+		<p>あなたは選ばれし者です。以下の規約に同意してください。</p>
+
+		<div class="scroll-box">
+			【正解者限定規約 第1条】<br>
+			本ページに到達したユーザー（以下「賢者」という）は、本サイトのシュールさを永遠に愛さなければならない。<br><br>
+			【第2条】<br>
+			賢者は、昨日食べたラーメンが伸びていたことに対し、深い同情の意を示す義務を負う。<br><br>
+			【第3条】<br>
+			盛岡冷麺とグミを「ゴム」と呼称することを許可するが、公共の場では慎むこと。<br><br>
+			【第4条】<br>
+			この規約を最後まで読み終えるまで、賢者はこのページを閉じることは推奨されない。<br><br>
+			【第5条】<br>
+			皇室典範の定めるところにより摂政を置くときは、摂政は、天皇の名でその国事に関する行為を行ふ。この場合には、前条第一項の規定を準用する。<br><br>
+			【第6条】<br>
+			以上の条文を理解した笑顔として、右上の管理者の表情を模倣すること。
+		</div>
+
+		<p style="font-size: 10px; color: red; clear: both;">※規約をすべて読み終えるまで「同意」ボタンはロックされています。</p>
+		<center>
+			<button onclick="alert('読み込みエラー：規約が長すぎます。最初から読み直してください。')">同意して閉じる</button>
+		</center>
+	</div>
+
+	<p style="margin-top: 20px;">
+		<a href="index.html" style="color: #666; font-size: 11px;">諦めてトップに戻る</a>
+	</p>
+
 </body>
+
 </html>
