@@ -226,35 +226,31 @@
 		});
 		document.oncontextmenu = () => { alert('★右クリック禁止★'); return false; };
 
-		// 5. 門番
-		function guardGate(event) {
-				event.preventDefault(); // リンクの即時ジャンプを止める
+		// 5. 門番（guardGate という名前にして、HTMLのonclickと合わせます）
+			function guardGate(event) {
+				event.preventDefault(); // リンクの即時ジャンプを防止
 
-				// しつこい確認
+				// しつこい確認（confirm）
 				if (confirm("……本気ですか？")) {
 					if (confirm("ここから先は、あなたの知っているインターネットではありませんよ？")) {
 						if (confirm("何が起きても、制作者を恨まないと誓いますか？")) {
 							if (confirm("本当に、本当に、本当にいいんですね？")) {
 
-								// --- あなたのコードをここに合流！ ---
+								// あなたが活かしたいと言っていた「魔法の言葉」ロジック
 								const p = prompt("パスワード？\nヒント：“謎の〇〇”");
 
 								if (p === "人" || p === "ひと") {
 									alert("正解！");
-									window.location.href = "reward.html"; // ご褒美へ
+									window.location.href = "reward.html"; // 正解なら報酬ページへ
 								} else {
-									// 不正解の場合は「残念」ページへ
 									alert("出直してきなさい。");
-									window.location.href = "zannen.html";
+									window.location.href = "zannen.html"; // 不正解なら残念ページへ
 								}
-								// ----------------------------------
-
 							}
 						}
 					}
 				}
 			}
-
 		// 6. BGM機能
 		const bgm = new Audio('picopico.mp3');
 		bgm.loop = true;
