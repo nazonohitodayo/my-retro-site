@@ -227,10 +227,33 @@
 		document.oncontextmenu = () => { alert('★右クリック禁止★'); return false; };
 
 		// 5. 門番
-		function gatekeeper() {
-			const p = prompt("パスワード？\nヒント：“謎の〇〇”");
-			if (p === "人" || p === "ひと") alert("正解！");
-		}
+		function guardGate(event) {
+				event.preventDefault(); // リンクの即時ジャンプを止める
+
+				// しつこい確認
+				if (confirm("……本気ですか？")) {
+					if (confirm("ここから先は、あなたの知っているインターネットではありませんよ？")) {
+						if (confirm("何が起きても、制作者を恨まないと誓いますか？")) {
+							if (confirm("本当に、本当に、本当にいいんですね？")) {
+
+								// --- あなたのコードをここに合流！ ---
+								const p = prompt("パスワード？\nヒント：“謎の〇〇”");
+
+								if (p === "人" || p === "ひと") {
+									alert("正解！");
+									window.location.href = "reward.html"; // ご褒美へ
+								} else {
+									// 不正解の場合は「残念」ページへ
+									alert("出直してきなさい。");
+									window.location.href = "zannen.html";
+								}
+								// ----------------------------------
+
+							}
+						}
+					}
+				}
+			}
 
 		// 6. BGM機能
 		const bgm = new Audio('picopico.mp3');
