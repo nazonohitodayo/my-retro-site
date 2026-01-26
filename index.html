@@ -226,25 +226,33 @@
 		});
 		document.oncontextmenu = () => { alert('★右クリック禁止★'); return false; };
 
-		// 5. 門番（guardGate という名前にして、HTMLのonclickと合わせます）
-			function guardGate(event) {
-				event.preventDefault(); // リンクの即時ジャンプを防止
+		// 5. 門番【魔法の言葉用】
+			// ナビゲーションの「魔法の言葉」をクリックした時に動きます
+			function gatekeeper() {
+				const p = prompt("パスワード？\nヒント：“謎の〇〇”");
+				if (p === "人" || p === "ひと") {
+					alert("正解！");
+					window.location.href = "reward.html"; // 正解ならご褒美ページへ
+				} else {
+					alert("残念でした。");
+				}
+			}
 
-				// しつこい確認（confirm）
+			// 秘密の入口用の関数
+			// [秘密の入口] ボタンをクリックした時に動きます
+			function guardGate(event) {
+				event.preventDefault();
 				if (confirm("……本気ですか？")) {
 					if (confirm("ここから先は、あなたの知っているインターネットではありませんよ？")) {
 						if (confirm("何が起きても、制作者を恨まないと誓いますか？")) {
 							if (confirm("本当に、本当に、本当にいいんですね？")) {
-
-								// あなたが活かしたいと言っていた「魔法の言葉」ロジック
-								const p = prompt("パスワード？\nヒント：“謎の〇〇”");
-
-								if (p === "人" || p === "ひと") {
-									alert("正解！");
-									window.location.href = "reward.html"; // 正解なら報酬ページへ
+								const pass = prompt("【最終認証】合言葉を入力してください\nヒント:写真のお姉さんの名字は？🤔");
+								if (pass === "高尾") {
+									alert("……認めましょう。深淵へようこそ。");
+									window.location.href = "secret.html";
 								} else {
 									alert("出直してきなさい。");
-									window.location.href = "zannen.html"; // 不正解なら残念ページへ
+									window.location.href = "zannen.html";
 								}
 							}
 						}
