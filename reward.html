@@ -73,6 +73,26 @@
 			z-index: 10000;
 			text-align: center;
 		}
+
+		/* ウィンドウの幅をスマホでは100%にする */
+.window {
+    width: 90%; /* スマホなどの狭い画面では横幅いっぱい */
+    max-width: 450px; /* PCでは今まで通り450px */
+    background: #fff;
+    border: 2px inset #fff;
+    box-shadow: 2px 2px 0 #000;
+    padding: 15px;
+    box-sizing: border-box; /* パディングを含めた幅計算 */
+    position: relative;
+}
+
+/* 全画面エリアの画像をスマホに最適化 */
+#full-happy img {
+    width: 100%;
+    height: 70%; /* ボタンのスペースを確保するために少し短く */
+    object-fit: contain; /* アスペクト比を保ったまま収める */
+    margin-top: 10px;
+}
 	</style>
 </head>
 
@@ -111,12 +131,15 @@
 		<img id="change-img" src="takao_happy.jpg"
 			style="height: 75%; width: auto; margin-top: 20px; border: 5px solid #fff;">
 		<div style="margin-top: 20px;">
-			<button id="congrats-btn" onclick="goHannya()"
-				style="background: #ff0000; color: #fff; border: 4px outset #ffcccc; padding: 15px 30px; font-size: 20px; font-weight: bold; cursor: pointer;">
-				🎉 おめでとうございます！！！ 🎉
-			</button>
-		</div>
-	</div>
+			<div id="full-happy">
+				<img id="change-img" src="takao_happy.jpg" alt="管理者">
+				<div style="margin-top: 10px; padding: 0 10px;">
+					<button id="congrats-btn" onclick="goHannya()"
+						style="background: #ff0000; color: #fff; border: 4px outset #ffcccc; padding: 10px 20px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; max-width: 300px;">
+						🎉 おめでとうございます！！！ 🎉
+					</button>
+				</div>
+			</div>
 
 	<script>
 		// 1. 同意ボタンを押した時
