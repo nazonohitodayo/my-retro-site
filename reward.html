@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>【極秘】正解者専用ページ</title>
 	<style>
 		body {
@@ -13,20 +14,23 @@
 			align-items: center;
 			padding-top: 30px;
 			margin: 0;
+			overflow-x: hidden;
 		}
 
+		/* 規約ウィンドウ：スマホ対応 */
 		.window {
-			width: 450px;
+			width: 90%;
+			max-width: 450px;
 			background: #fff;
 			border: 2px inset #fff;
 			box-shadow: 2px 2px 0 #000;
 			padding: 20px;
-			position: relative;
+			box-sizing: border-box;
 		}
 
 		.scroll-box {
 			width: 100%;
-			height: 200px;
+			height: 180px;
 			overflow-y: scroll;
 			border: 1px inset #888;
 			background: #eee;
@@ -39,7 +43,7 @@
 		}
 
 		.admin-photo {
-			width: 80px;
+			width: 70px;
 			border: 1px solid #000;
 			float: right;
 			margin-left: 10px;
@@ -51,72 +55,60 @@
 			margin-top: 0;
 		}
 
-		/* 同意ボタン：押せるようにカーソルをpointerに */
 		.agree-btn {
 			background: #c0c0c0;
 			border: 2px outset #fff;
-			padding: 8px 25px;
+			padding: 10px 20px;
 			cursor: pointer;
-			font-size: 12px;
+			font-size: 14px;
 			font-weight: bold;
 		}
 
-		/* 全画面オーバーレイ */
+		/* --- 全画面オーバーレイ：ここが重要 --- */
 		#full-happy {
 			display: none;
 			position: fixed;
 			top: 0;
 			left: 0;
-			width: 100%;
-			height: 100%;
+			width: 100vw;
+			height: 100vh;
 			background: #000;
 			z-index: 10000;
-			text-align: center;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
 		}
-/* 全画面表示エリアの設定 */
-    #full-happy {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000; /* 背景を黒にすると余白が目立たず不気味になります */
-        z-index: 10000;
-        overflow: hidden; /* スクロールさせない */
-    }
 
-    /* 画像が伸びるのを防ぐ最重要設定 */
-    /* 画像のサイズ調整：ここを修正します */
-    #change-img {
-        width: 100%;       /* 画面の横幅を超えないようにする */
-        height: 70vh;      /* 画面の高さの7割までに制限する */
-        object-fit: contain; /* ★重要：比率を維持して全体を収める */
-        display: block;    /* 中央寄せの準備 */
-        margin: 20px auto 0; /* 上に余白を作り、左右中央に配置 */
-    }
+		/* 顔が切れないように設定 */
+		#change-img {
+			width: 100%;
+			height: 70vh;
+			object-fit: contain;
+			/* 比率を維持して枠に収める */
+			object-position: center top;
+			/* 顔（上部）を優先表示 */
+			margin-top: 10px;
+		}
 
-    /* ボタンエリアをスマホでも押しやすく */
-    .btn-container {
-        height: 25vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 20px;
-    }
+		.btn-container {
+			width: 100%;
+			height: 25vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 
-    #congrats-btn {
-        background: #ff0000;
-        color: #fff;
-        border: 4px outset #ffcccc;
-        padding: 15px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-        width: 100%;
-        max-width: 400px;
-    }
-
+		#congrats-btn {
+			background: #ff0000;
+			color: #fff;
+			border: 4px outset #ffcccc;
+			padding: 15px 20px;
+			font-size: 1.1rem;
+			font-weight: bold;
+			cursor: pointer;
+			width: 80%;
+			max-width: 300px;
+		}
 	</style>
 </head>
 
@@ -152,49 +144,36 @@
 	</p>
 
 	<div id="full-happy">
-		<img id="change-img" src="takao_happy.jpg"
-			style="height: 75%; width: auto; margin-top: 20px; border: 5px solid #fff;">
-		<div style="margin-top: 20px;">
-			<div id="full-happy">
-				<img id="change-img" src="takao_happy.jpg" alt="管理者">
-				<div style="margin-top: 10px; padding: 0 10px;">
-					<button id="congrats-btn" onclick="goHannya()"
-						style="background: #ff0000; color: #fff; border: 4px outset #ffcccc; padding: 10px 20px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; max-width: 300px;">
-						🎉 おめでとうございます！！！ 🎉
-					</button>
-				</div>
-			</div>
+		<img id="change-img" src="takao_happy.jpg" alt="管理者">
+		<div class="btn-container">
+			<button id="congrats-btn" onclick="goHannya()">
+				🎉 おめでとうございます！！！ 🎉
+			</button>
+		</div>
+	</div>
 
 	<script>
-		// 1. 同意ボタンを押した時
 		function showError() {
 			alert("読み込みエラー：規約が長すぎます。最初から読み直してください。");
 			const happyDiv = document.getElementById('full-happy');
 			if (happyDiv) {
-				happyDiv.style.display = 'block';
+				happyDiv.style.display = 'flex'; // blockではなくflexで中央寄せ
 			}
 		}
 
-		// 2. 「おめでとう」ボタンを押した時
 		function goHannya() {
 			const img = document.getElementById('change-img');
 			const btn = document.getElementById('congrats-btn');
 
-			// 画像を般若に切り替え
 			img.src = 'takao_hannya.jpg';
-
-			// ボタンを隠す
 			btn.style.display = 'none';
 
-			// 追い込みのダイアログ連打
 			setTimeout(() => {
 				alert("……。");
 				alert("何かいいことがあると思いましたか？");
 				alert("世の中そんなに甘くありません。");
 				alert("あなたは貴重な時間を無駄にしました。");
 				alert("そろそろ現実に戻る時間です。");
-
-				// 強制送還
 				window.location.href = "zannen.html";
 			}, 500);
 		}
