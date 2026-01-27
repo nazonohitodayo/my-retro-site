@@ -73,26 +73,48 @@
 			z-index: 10000;
 			text-align: center;
 		}
+/* 全画面表示エリアの設定 */
+    #full-happy {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000; /* 背景を黒にすると余白が目立たず不気味になります */
+        z-index: 10000;
+        overflow: hidden; /* スクロールさせない */
+    }
 
-		/* ウィンドウの幅をスマホでは100%にする */
-.window {
-    width: 90%; /* スマホなどの狭い画面では横幅いっぱい */
-    max-width: 450px; /* PCでは今まで通り450px */
-    background: #fff;
-    border: 2px inset #fff;
-    box-shadow: 2px 2px 0 #000;
-    padding: 15px;
-    box-sizing: border-box; /* パディングを含めた幅計算 */
-    position: relative;
-}
+    /* 画像が伸びるのを防ぐ最重要設定 */
+    #change-img {
+        width: 100vw;   /* 画面の横幅いっぱい */
+        height: 70vh;  /* 画面の高さの7割（下のボタン用スペースを確保） */
+        object-fit: contain; /* ★これが重要！縦横比を維持して収める */
+        margin-top: 2vh;
+    }
 
-/* 全画面エリアの画像をスマホに最適化 */
-#full-happy img {
-    width: 100%;
-    height: 70%; /* ボタンのスペースを確保するために少し短く */
-    object-fit: contain; /* アスペクト比を保ったまま収める */
-    margin-top: 10px;
-}
+    /* ボタンエリアをスマホでも押しやすく */
+    .btn-container {
+        height: 25vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+    }
+
+    #congrats-btn {
+        background: #ff0000;
+        color: #fff;
+        border: 4px outset #ffcccc;
+        padding: 15px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        max-width: 400px;
+    }
+
 	</style>
 </head>
 
