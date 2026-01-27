@@ -96,11 +96,17 @@
 <div id="full-happy"
 	style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; text-align: center;">
 	<img src="takao_happy.jpg" style="height: 100%; width: auto;">
-	<div
-		style="position: absolute; top: 80%; left: 50%; transform: translateX(-50%); background: #000; color: #fff; padding: 10px; font-weight: bold;">
-		おめでとうございます！！！
-	</div>
-</div>
+	<div id="full-happy"
+		style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; text-align: center;">
+		<img id="change-img" src="takao_happy.jpg" style="height: 80%; width: auto; margin-top: 20px;">
+	
+		<div style="margin-top: 20px;">
+			<button id="congrats-btn" onclick="goHannya()"
+				style="background: #ff0000; color: #fff; border: 4px outset #ffcccc; padding: 15px 30px; font-size: 20px; font-weight: bold; cursor: pointer;">
+				🎉 おめでとうございます！！！ 🎉
+			</button>
+		</div>
+	</div></div>
 </body>
 <script>
 	function showError() {
@@ -113,5 +119,38 @@
 			happyDiv.style.display = 'block';
 		}
 	}
+
+	// 同意ボタンを押したときの最初の処理
+		function showError() {
+			alert("読み込みエラー：規約が長すぎます。最初から読み直してください。");
+			const happyDiv = document.getElementById('full-happy');
+			if (happyDiv) {
+				happyDiv.style.display = 'block';
+			}
+		}
+
+		// 「おめでとう」ボタンを押したときの嫌がらせ処理
+		function goHannya() {
+			const img = document.getElementById('change-img');
+			const btn = document.getElementById('congrats-btn');
+
+			// 1. 画像を般若に切り替え
+			img.src = 'takao_hannya.jpg';
+
+			// 2. ボタンを消す（逃げ道をなくす）
+			btn.style.display = 'none';
+
+			// 3. 執拗なダイアログ（数回出す）
+			setTimeout(() => {
+				alert("……。");
+				alert("何かいいことがあると思いましたか？");
+				alert("世の中そんなに甘くありません。");
+				alert("あなたは貴重な時間を無駄にしました。");
+				alert("そろそろ現実に戻る時間です。");
+
+				// 4. zannen.htmlへ強制送還
+				window.location.href = "zannen.html";
+			}, 500);
+		}
 </script>
 </html>
