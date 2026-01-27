@@ -7,33 +7,60 @@
 	<title>残念でした～</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
 	<style>
-		/* CSSは<style>タグの中にまとめると管理しやすく、ミスも減ります */
 		body {
 			background-color: #000;
-			/* 追放先っぽく黒背景にすると雰囲気が出ます */
 			color: #fff;
 			display: flex;
+			/* 縦に並べる設定 */
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			height: 100vh;
 			margin: 0;
 			overflow: hidden;
+			text-align: center;
 		}
 
 		h1 {
 			font-family: "Noto Serif JP", serif;
 			font-weight: 900;
-			font-size: 5rem;
-			text-align: center;
+			/* スマホでは画面幅に合わせて小さく、PCでは最大サイズに */
+			font-size: 12vw;
+			max-font-size: 80px;
+			margin: 0 0 20px 0;
+			line-height: 1.2;
+		}
+
+		/* 画像の設定 */
+		p {
+			margin: 0;
+		}
+
+		img {
+			max-width: 150px;
+			/* スマホで巨大化しすぎないサイズ */
+			height: auto;
+			border: none;
+		}
+
+		/* PCモニターなどの大きな画面用の微調整 */
+		@media (min-width: 768px) {
+			h1 {
+				font-size: 5rem;
+			}
 		}
 	</style>
 </head>
 
 <body>
 	<h1>残念でした～～</h1>
-	<p><a href="index.html"><img src="nazonohito.gif" alt=""></a></p>
+	<p>
+		<a href="index.html">
+			<img src="nazonohito.gif" alt="戻る">
+		</a>
+	</p>
 </body>
 
 </html>
