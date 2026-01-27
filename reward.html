@@ -12,6 +12,7 @@
 			flex-direction: column;
 			align-items: center;
 			padding-top: 30px;
+			margin: 0;
 		}
 
 		.window {
@@ -37,7 +38,6 @@
 			box-sizing: border-box;
 		}
 
-		/* お姉さんの画像を右上に配置 */
 		.admin-photo {
 			width: 80px;
 			border: 1px solid #000;
@@ -51,21 +51,34 @@
 			margin-top: 0;
 		}
 
-		button {
+		/* 同意ボタン：押せるようにカーソルをpointerに */
+		.agree-btn {
 			background: #c0c0c0;
 			border: 2px outset #fff;
-			padding: 5px 20px;
-			cursor: not-allowed;
+			padding: 8px 25px;
+			cursor: pointer;
 			font-size: 12px;
+			font-weight: bold;
+		}
+
+		/* 全画面オーバーレイ */
+		#full-happy {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			z-index: 10000;
+			text-align: center;
 		}
 	</style>
 </head>
 
 <body>
-
 	<div class="window">
 		<img src="takao_happy.jpg" alt="管理者" class="admin-photo">
-
 		<h1>🎉 正解おめでとう 🎉</h1>
 		<p>あなたは選ばれし者です。以下の規約に同意してください。</p>
 
@@ -84,42 +97,29 @@
 			以上の条文を理解した笑顔として、右上の写真のお姉さんの表情を模倣すること。
 		</div>
 
-		<p style="font-size: 10px; color: red; clear: both;">※規約をすべて読み終えるまで「同意」ボタンはロックされています。</p>
+		<p style="font-size: 10px; color: red; clear: both; text-align: center;">※規約をすべて読み終えるまで「同意」ボタンはロックされています。</p>
 		<center>
-			<button onclick="showError()">同意して閉じる</button>
+			<button class="agree-btn" onclick="showError()">同意して閉じる</button>
 		</center>
 	</div>
 
 	<p style="margin-top: 20px;">
 		<a href="index.html" style="color: #666; font-size: 11px;">諦めてトップに戻る</a>
 	</p>
-<div id="full-happy"
-	style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; text-align: center;">
-	<img src="takao_happy.jpg" style="height: 100%; width: auto;">
-	<div id="full-happy"
-		style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; text-align: center;">
-		<img id="change-img" src="takao_happy.jpg" style="height: 80%; width: auto; margin-top: 20px;">
+
+	<div id="full-happy">
+		<img id="change-img" src="takao_happy.jpg"
+			style="height: 75%; width: auto; margin-top: 20px; border: 5px solid #fff;">
 		<div style="margin-top: 20px;">
 			<button id="congrats-btn" onclick="goHannya()"
 				style="background: #ff0000; color: #fff; border: 4px outset #ffcccc; padding: 15px 30px; font-size: 20px; font-weight: bold; cursor: pointer;">
 				🎉 おめでとうございます！！！ 🎉
 			</button>
 		</div>
-	</div>	</div></div>
-</body>
-<script>
-	function showError() {
-		// 1. 読み込みエラーを出す
-		alert("読み込みエラー：規約が長すぎます。最初から読み直してください。");
+	</div>
 
-		// 2. OKを押した後に画像を表示させる
-		const happyDiv = document.getElementById('full-happy');
-		if (happyDiv) {
-			happyDiv.style.display = 'block';
-		}
-	}
-
-	// 同意ボタンを押したときの最初の処理
+	<script>
+		// 1. 同意ボタンを押した時
 		function showError() {
 			alert("読み込みエラー：規約が長すぎます。最初から読み直してください。");
 			const happyDiv = document.getElementById('full-happy');
@@ -128,18 +128,18 @@
 			}
 		}
 
-		// 「おめでとう」ボタンを押したときの嫌がらせ処理
+		// 2. 「おめでとう」ボタンを押した時
 		function goHannya() {
 			const img = document.getElementById('change-img');
 			const btn = document.getElementById('congrats-btn');
 
-			// 1. 画像を般若に切り替え
+			// 画像を般若に切り替え
 			img.src = 'takao_hannya.jpg';
 
-			// 2. ボタンを消す（逃げ道をなくす）
+			// ボタンを隠す
 			btn.style.display = 'none';
 
-			// 3. 執拗なダイアログ（数回出す）
+			// 追い込みのダイアログ連打
 			setTimeout(() => {
 				alert("……。");
 				alert("何かいいことがあると思いましたか？");
@@ -147,9 +147,11 @@
 				alert("あなたは貴重な時間を無駄にしました。");
 				alert("そろそろ現実に戻る時間です。");
 
-				// 4. zannen.htmlへ強制送還
+				// 強制送還
 				window.location.href = "zannen.html";
 			}, 500);
 		}
-</script>
+	</script>
+</body>
+
 </html>
