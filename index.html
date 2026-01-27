@@ -357,12 +357,13 @@
 							if (confirm("何が起きても、制作者を恨まないと誓いますか？")) {
 								if (confirm("本当に、本当に、本当にいいんですね？")) {
 									const pass = prompt("【最終認証】合言葉を入力してください\nヒント:写真のお姉さんの名字は？🤔");
-									if (pass === "高尾") {
+									// ★ ここを修正：複数の正解パターンを「||（または）」でつなぎます
+									if (pass === "高尾" || pass === "takao" || pass === "Takao" || pass === "たかお") {
 										alert("……認めましょう。深淵へようこそ。");
 										window.location.href = "secret.html";
 									} else {
 										alert("出直してきなさい。");
-										window.location.href = "https://nazonohitodayo.github.io/my-retro-site/zannen.html";
+										window.location.href = "zannen.html";
 									}
 								}
 							}
